@@ -32,7 +32,27 @@ h3 {
     font-weight: 100;
 }
 
-/* UTILITIES */
+/* SECTION: Utilities */
+.item {
+    width: 500px;
+    margin: 20px auto;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #D2D2D2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-detail-div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-icon {
+    width: 70px;
+}
+
 .item-name {
     font-size: 28px;
     margin-bottom: 0px;
@@ -63,24 +83,4 @@ h3 {
     padding-bottom: 7px;
 }
 
-/* SECTION: Item-1 */
-.item-1 {
-    width: 500px;
-    margin: 20px auto;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #D2D2D2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item-detail-div {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.pizza-icon {
-    width: 70px;
-}
 
