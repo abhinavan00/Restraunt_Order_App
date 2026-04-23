@@ -32,3 +32,55 @@ h3 {
     font-weight: 100;
 }
 
+/* UTILITIES */
+.item-name {
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+
+.item-desc {
+    font-size: 16px;
+    color: #8B8B8B;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.item-price {
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+.add-btn {
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: lighter;
+    color: #3C3C3C;
+    background: none;
+    border: 1.5px solid #dedede;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding-bottom: 7px;
+}
+
+/* SECTION: Item-1 */
+.item-1 {
+    width: 500px;
+    margin: 20px auto;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #D2D2D2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-detail-div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pizza-icon {
+    width: 70px;
+}
+
