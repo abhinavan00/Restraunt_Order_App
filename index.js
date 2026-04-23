@@ -1,12 +1,12 @@
 import menuItems from "./menuItems.js"
 
-const main = document.getElementById('main')
+const itemsContainer = document.getElementById('items-container')
 
 function getMenuItems() {
     return menuItems.map(item => {
         const {price, name, ingredients, image, alt} = item
             return `
-                <section class="item">
+                <div class="item">
                     <div class="item-detail-div">
                         <img src="images/${image}" alt="${alt}" class="item-icon">
                         <div>
@@ -16,13 +16,13 @@ function getMenuItems() {
                         </div>
                     </div>
                     <button class="add-btn">+</button>
-                </section>
+                </div>
             `
-        })
+        }).join('')
 }
 
 function render() {
-    main.innerHTML = getMenuItems()
+    itemsContainer.innerHTML = getMenuItems()
 }
 
 render()
