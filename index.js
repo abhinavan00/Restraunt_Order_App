@@ -3,8 +3,10 @@ import menuItems from "./menuItems.js"
 const itemsContainer = document.getElementById('items-container')
 
 function getMenuItems() {
+    
     return menuItems.map(item => {
         const {price, name, ingredients, image, alt} = item
+
             return `
                 <div class="item">
                     <div class="item-detail-div">
@@ -19,6 +21,7 @@ function getMenuItems() {
                 </div>
             `
         }).join('')
+
 }
 
 function render() {
