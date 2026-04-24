@@ -4,7 +4,7 @@
         <!-- GOOGLE FONT -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Smythe&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet">
         
         <!-- CSS Styelsheet -->
         <link rel="stylesheet" href="style.css">
@@ -18,13 +18,15 @@
             <section id="items-container"></section>
 
             <section class="checkout-section">
-                <p>Total Price</p>
-                <div>
-                    <div>
-                        <p>Pizza</p>
-                        <p>$14</p>
-                    </div>
+                <p class="checkout-head">Total Price</p>
+                <div class="selected-items-container" id="selected-items-container">
+                    
                 </div>
+                <div class="total-price-container">
+                    <p class="total-price">Total Price</p>
+                    <p id="total-value">0</p>
+                </div>
+                <button class="checkout-btn">Complete order</button>
             </section>
         </main>
         <script src="index.js" type="module"></script>

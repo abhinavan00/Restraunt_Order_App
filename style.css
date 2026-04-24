@@ -81,7 +81,68 @@ h3 {
     width: 50px;
     height: 50px;
     padding-bottom: 7px;
+    cursor: pointer;
 }
 
 /* CHECKOUT SECTION */
+
+.checkout-section {
+    width: 500px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.checkout-head {
+    font-size: 28px;
+}
+
+.selected-items-container {
+    border-bottom: 2px solid #393333;
+    padding-bottom: 20px;
+}
+
+.selected-items, .total-price-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+}
+
+.selected-items div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+}
+
+.selected-item-name, .selected-item-price {
+    font-size: 26px;
+    margin: 8px;
+}
+
+.remove-item-btn {
+    font-size: 12px;
+    color: #BBBBBB;
+    border: none;
+    background: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.remove-item-btn:hover {
+    color: black;
+    text-decoration: underline;
+} 
+
+.checkout-btn {
+    width: 500px;
+    border: none;
+    border-radius: 4px;
+    background-color: #16DB99;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 20px 0;
+    margin-top: 20px;
+    cursor: pointer;
+}
 
