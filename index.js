@@ -4,47 +4,66 @@ const itemsContainer = document.getElementById('items-container')
 const selectedItemsContainer = document.getElementById('selected-items-container')
 const totalValue = document.getElementById('total-value')
 
-
+// event listner for calling add item to cart function
 document.addEventListener('click', function(e) {
-    if(e.target.id === 'Pizza') {
-        addPizzaToCart()
-    } else if(e.target.id === 'Hamburger') [
-        addHamburgerToCart()
-    ]
+    if(e.target.dataset.add) {
+        addItemToCart(e.target.dataset.add)
+    }
 })
 
-function addPizzaToCart() {
-    menuItems.filter(item => {
-        if(item.name === 'Pizza') {
-            selectedItemsContainer.innerHTML += `
-                <div class="selected-items">
-                    <div>
-                        <p class="selected-item-name">${item.name}</p>
-                        <button class="remove-item-btn">remove</button>
-                    </div>
-                    <p class="selected-item-price">${item.price}</p>
-                </div>
-            `    
-        }
-    })
+// event listner for calling remove item function
+document.addEventListener('click', function(e) {
+    if(e.target.dataset.remove) {
+        removeItemFromCart(e.target.dataset.remove)
+    } 
+})
+
+// Calculate Total price
+function calculateTotal(price) {    
+    totalValue.textContent = `${Number(totalValue.textContent) + price}`
+
 }
 
-function addHamburgerToCart() {
+// Function for adding item to cart
+function addItemToCart(itemName) {
     menuItems.filter(item => {
-        if(item.name === 'Hamburger') {
+        if(item.name === itemName) {
+            // item.uuid = crypto.randomUUID()
             selectedItemsContainer.innerHTML += `
-                <div class="selected-items">
+                <div class="selected-items" id="${item.name}">
                     <div>
                         <p class="selected-item-name">${item.name}</p>
-                        <button class="remove-item-btn">remove</button>
+                        <button 
+                            class="remove-item-btn" 
+                            data-remove= "${item.name}"
+                        >
+                            remove
+                        </button>
                     </div>
-                    <p class="selected-item-price">${item.price}</p>
+                    <p class="selected-item-price">$${item.price}</p>
                 </div>
             `
+
+            calculateTotal(item.price)
+        } 
+    })
+}
+
+// Function for removing item from Cart
+function removeItemFromCart(itemId) {
+    document.getElementById(itemId).remove()
+    menuItems.filter(item => {
+        if (item.name === 'Pizza' && item.name === itemId) {
+            calculateTotal(-item.price)
+        } else if (item.name === 'Hamburger' && item.name === itemId) {
+            calculateTotal(-item.price)
+        } else if (item.name === 'Beer' && item.name === itemId) {
+            calculateTotal(-item.price)
         }
     })
 }
 
+// Get list of menu items
 function getMenuItems() {
     
     return menuItems.map(item => {
@@ -60,13 +79,14 @@ function getMenuItems() {
                             <p class="item-price">${price}</p>
                         </div>
                     </div>
-                    <button class="add-btn" id="${name}">+</button>
+                    <button class="add-btn" data-add="${name}">+</button>
                 </div>
             `
         }).join('')
 
 }
 
+// render menu items to DOM
 function render() {
     itemsContainer.innerHTML = getMenuItems()
 }
