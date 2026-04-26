@@ -3,24 +3,23 @@ import menuItems from "./menuItems.js"
 const itemsContainer = document.getElementById('items-container')
 const selectedItemsContainer = document.getElementById('selected-items-container')
 const totalValue = document.getElementById('total-value')
+const checkoutSection = document.getElementById('checkout-section')
 
 // event listner for calling add item to cart function
 document.addEventListener('click', function(e) {
     if(e.target.dataset.add) {
         addItemToCart(e.target.dataset.add)
+    } else if (e.target.dataset.remove) {
+        removeItemFromCart(e.target.dataset.remove)
     }
 })
 
-// event listner for calling remove item function
-document.addEventListener('click', function(e) {
-    if(e.target.dataset.remove) {
-        removeItemFromCart(e.target.dataset.remove)
-    } 
-})
 
 // Calculate Total price
 function calculateTotal(price) {    
     totalValue.textContent = `${Number(totalValue.textContent) + price}`
+    
+    // checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
 
 }
 
@@ -76,7 +75,7 @@ function getMenuItems() {
                         <div>
                             <p class="item-name">${name}</p>
                             <p class="item-desc">${ingredients}</p>
-                            <p class="item-price">${price}</p>
+                            <p class="item-price">$${price}</p>
                         </div>
                     </div>
                     <button class="add-btn" data-add="${name}">+</button>
