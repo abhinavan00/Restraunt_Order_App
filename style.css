@@ -196,3 +196,13 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
+/* CONFIRMATION MESSAGE */
+.confrm-msg {
+    font-size: 32px;
+    color: #065F46;
+    background: #ECFDF5;
+    padding: 30px 0;
+    border-radius: 6px;
+    /* box-shadow: 3px 3px 50px 0 rgba(0, 0, 0, 0.5); */
+}
+

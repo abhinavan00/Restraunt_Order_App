@@ -67,7 +67,7 @@ function removeItemFromCart(itemId) {
 
 // Payment Modal
 function displayPaymentModal(e) {
-    document.getElementById('payment-modal').style.display = 'flex'
+    paymentModal.style.display = 'flex'
     
 }
 
@@ -75,7 +75,14 @@ function displayPaymentModal(e) {
 paymentModal.addEventListener('submit', function(e) {
     e.preventDefault()
     const formData = new FormData(paymentModal)
-    console.log(formData)
+    const customerName = formData.get('customer-name')
+    paymentModal.style.display = 'none'
+
+    checkoutSection.innerHTML = `
+        <p class="confrm-msg" id="confrm-msg">
+            Thanks, ${customerName}! Your order is on its way!
+        </p>
+    `
 })
 
 // Get list of menu items
