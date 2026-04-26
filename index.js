@@ -4,14 +4,17 @@ const itemsContainer = document.getElementById('items-container')
 const selectedItemsContainer = document.getElementById('selected-items-container')
 const totalValue = document.getElementById('total-value')
 const checkoutSection = document.getElementById('checkout-section')
+const paymentModal = document.getElementById('payment-modal')
 
-// event listner for calling add item to cart function
+// event listners
 document.addEventListener('click', function(e) {
     if(e.target.dataset.add) {
         addItemToCart(e.target.dataset.add)
     } else if (e.target.dataset.remove) {
         removeItemFromCart(e.target.dataset.remove)
-    }
+    } else if (e.target.id === 'checkout-btn') {
+        displayPaymentModal()
+    } 
 })
 
 
@@ -19,7 +22,7 @@ document.addEventListener('click', function(e) {
 function calculateTotal(price) {    
     totalValue.textContent = `${Number(totalValue.textContent) + price}`
     
-    // checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
+    checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
 
 }
 
@@ -61,6 +64,19 @@ function removeItemFromCart(itemId) {
         }
     })
 }
+
+// Payment Modal
+function displayPaymentModal(e) {
+    document.getElementById('payment-modal').style.display = 'flex'
+    
+}
+
+// Order Confirmation Msg
+paymentModal.addEventListener('submit', function(e) {
+    e.preventDefault()
+    const formData = new FormData(paymentModal)
+    console.log(formData)
+})
 
 // Get list of menu items
 function getMenuItems() {

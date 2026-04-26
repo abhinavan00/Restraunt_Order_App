@@ -26,28 +26,38 @@
                     <p class="total-price">Total price:</p>
                     <p>$<span id="total-value">0</span></p>
                 </div>
-                <button class="checkout-btn">Complete order</button>
+                <button class="checkout-btn" id="checkout-btn">Complete order</button>
             </section>
         </main>
         <form class="payment-modal" id="payment-modal">
             <p class="modal-heading">Enter card details</p>
-            <input 
-                type="text" 
-                placeholder="Enter your name"
-                aria-label="Enter your full name"
-            >
-            <input 
-                type="number"
-                placeholder="Enter card number"
-                pattern="[0-9]{16}" 
-                aria-label="Enter card number"
-            >
-            <input 
-                type="number"
-                placeholder="Enter CVV"
-                pattern="[0-9]{3}"
-            >
-            <button type="submit">Pay</button>
+            <div>
+                <input 
+                    type="text" 
+                    name="customer-name"
+                    placeholder="Enter your name"
+                    aria-label="Enter your full name"
+                    required
+                >
+                <input 
+                    type="tel"
+                    placeholder="Enter card number"
+                    inputmode="numeric"
+                    pattern="\d{12,16}"
+                    maxlength="16" 
+                    aria-label="Enter card number"
+                    required
+                >
+                <input 
+                    type="tel"
+                    placeholder="Enter CVV"
+                    inputmode="numeric"
+                    pattern="\d{3,4}"
+                    maxlength="4"
+                    required
+                >
+            </div>
+            <button type="submit" class="payment-btn" id="payment-btn">Pay</button>
         </form>
         <script src="index.js" type="module"></script>
     </body>
