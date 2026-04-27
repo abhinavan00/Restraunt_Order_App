@@ -31,7 +31,7 @@ h3 {
     font-weight: 100;
 }
 
-/* SECTION: Utilities */
+/* MENU OPTIONS SECTION */
 .item {
     width: 500px;
     margin: 20px auto;
@@ -111,7 +111,6 @@ h3 {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* border: 1px solid black; */
 }
 
 .selected-item-name, .selected-item-price {
