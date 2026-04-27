@@ -13,20 +13,12 @@ document.addEventListener('click', function(e) {
     } else if (e.target.dataset.remove) {
         removeItemFromCart(e.target.dataset.remove)
     } else if (e.target.id === 'checkout-btn') {
-        displayPaymentModal()
+        // Payment Modal
+        paymentModal.style.display = 'flex'
     } 
 })
 
-
-// Calculate Total price
-function calculateTotal(price) {    
-    totalValue.textContent = `${Number(totalValue.textContent) + price}`
-    
-    checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
-
-}
-
-// Function for adding item to cart
+// Add item to cart
 function addItemToCart(itemName) {
     menuItems.filter(item => {
         if(item.name === itemName) {
@@ -51,7 +43,15 @@ function addItemToCart(itemName) {
     })
 }
 
-// Function for removing item from Cart
+// Calculate Total price
+function calculateTotal(price) {    
+    totalValue.textContent = `${Number(totalValue.textContent) + price}`
+    
+    checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
+
+}
+
+// Remove item from Cart
 function removeItemFromCart(itemId) {
     document.getElementById(itemId).remove()
     menuItems.filter(item => {
@@ -65,11 +65,6 @@ function removeItemFromCart(itemId) {
     })
 }
 
-// Payment Modal
-function displayPaymentModal(e) {
-    paymentModal.style.display = 'flex'
-    
-}
 
 // Order Confirmation Msg
 paymentModal.addEventListener('submit', function(e) {
