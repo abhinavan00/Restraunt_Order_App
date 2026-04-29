@@ -22,21 +22,27 @@ document.addEventListener('click', function(e) {
 function addItemToCart(itemName) {
     menuItems.filter(item => {
         if(item.name === itemName) {
-            // item.uuid = crypto.randomUUID()
-            selectedItemsContainer.innerHTML += `
-                <div class="selected-items" id="${item.name}">
-                    <div>
-                        <p class="selected-item-name">${item.name}</p>
-                        <button 
-                            class="remove-item-btn" 
-                            data-remove= "${item.name}"
-                        >
-                            remove
-                        </button>
+            if (item.quantity === 0) {
+                item.quantity++
+                selectedItemsContainer.innerHTML += `
+                    <div class="selected-items" id="${item.name}">
+                        <div>
+                            <p class="selected-item-name">${item.name}</p>
+                            <p id="${item.name}-quantity">${item.quantity}</p>
+                            <button 
+                                class="remove-item-btn" 
+                                data-remove= "${item.name}"
+                            >
+                                remove
+                            </button>
+                        </div>
+                        <p class="selected-item-price">$${item.price}</p>
                     </div>
-                    <p class="selected-item-price">$${item.price}</p>
-                </div>
-            `
+                `
+            } else {
+                item.quantity++
+                document.getElementById(`${item.name}-quantity`).textContent = `${item.quantity}`
+            }
 
             calculateTotal(item.price)
         } 
@@ -44,17 +50,28 @@ function addItemToCart(itemName) {
 }
 
 // Calculate Total price
-function calculateTotal(price) {    
+function calculateTotal(price) {
     totalValue.textContent = `${Number(totalValue.textContent) + price}`
     
     checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
+}
+
+// Apply Offer
+function applyOffer() {
 
 }
 
 // Remove item from Cart
 function removeItemFromCart(itemId) {
-    document.getElementById(itemId).remove()
     menuItems.filter(item => {
+        if (item.name === itemId && item.quantity > 1) {
+            item.quantity--
+            document.getElementById(`${item.name}-quantity`).textContent = `${item.quantity}`
+        } else if(item.name === itemId && item.quantity === 1) {
+            item.quantity--
+            document.getElementById(itemId).remove()
+        }
+        
         if (item.name === 'Pizza' && item.name === itemId) {
             calculateTotal(-item.price)
         } else if (item.name === 'Hamburger' && item.name === itemId) {
