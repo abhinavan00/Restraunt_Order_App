@@ -67,17 +67,11 @@ function removeItemFromCart(itemId) {
         if (item.name === itemId && item.quantity > 1) {
             item.quantity--
             document.getElementById(`${item.name}-quantity`).textContent = `${item.quantity}`
+            calculateTotal(-item.price)
         } else if(item.name === itemId && item.quantity === 1) {
             item.quantity--
+            calculateTotal(-item.price)
             document.getElementById(itemId).remove()
-        }
-        
-        if (item.name === 'Pizza' && item.name === itemId) {
-            calculateTotal(-item.price)
-        } else if (item.name === 'Hamburger' && item.name === itemId) {
-            calculateTotal(-item.price)
-        } else if (item.name === 'Beer' && item.name === itemId) {
-            calculateTotal(-item.price)
         }
     })
 }
