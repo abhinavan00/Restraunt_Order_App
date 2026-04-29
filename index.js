@@ -28,7 +28,7 @@ function addItemToCart(itemName) {
                     <div class="selected-items" id="${item.name}">
                         <div>
                             <p class="selected-item-name">${item.name}</p>
-                            <p id="${item.name}-quantity">${item.quantity}</p>
+                            <p class="item-quantity" id="${item.name}-quantity">${item.quantity}</p>
                             <button 
                                 class="remove-item-btn" 
                                 data-remove= "${item.name}"
