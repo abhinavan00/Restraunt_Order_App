@@ -1,4 +1,4 @@
-import menuItems from "./menuItems.js"
+import { menuItems, cartItems} from "./menuItems.js"
 
 const itemsContainer = document.getElementById('items-container')
 const selectedItemsContainer = document.getElementById('selected-items-container')
@@ -22,6 +22,7 @@ document.addEventListener('click', function(e) {
 function addItemToCart(itemName) {
     menuItems.filter(item => {
         if(item.name === itemName) {
+            cartItems.push(item)
             if (item.quantity === 0) {
                 item.quantity++
                 selectedItemsContainer.innerHTML += `
@@ -47,6 +48,7 @@ function addItemToCart(itemName) {
             calculateTotal(item.price)
         } 
     })
+    applyOffer(cartItems)
 }
 
 // Calculate Total price
@@ -57,8 +59,20 @@ function calculateTotal(price) {
 }
 
 // Apply Offer
-function applyOffer() {
-
+function applyOffer(items) {
+    const pizzaQty = items.filter(i => i.name === 'Pizza').length
+    const hamburgerQty = items.filter(i => i.name === 'Hamburger').length
+    if(pizzaQty === 2 && hamburgerQty === 2) {
+        selectedItemsContainer.innerHTML += `
+            <div class="selected-items" >
+                <div>
+                    <p class="selected-item-name">🎁 Free Beer!</p>
+                    <p class="item-quantity">1</p>
+                </div>
+                <p class="selected-item-price">-$12</p>
+            </div>
+        `
+    }
 }
 
 // Remove item from Cart

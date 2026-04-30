@@ -1,4 +1,4 @@
-const menuItems = [
+export const menuItems = [
     {
         name: 'Pizza',
         ingredients: 'pepperoni,mushrom,mozarella',
@@ -26,4 +26,4 @@ const menuItems = [
 
 ]
 
-export default menuItems;
+export const cartItems = []
