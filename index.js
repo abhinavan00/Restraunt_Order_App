@@ -22,13 +22,12 @@ document.addEventListener('click', function(e) {
 function addItemToCart(itemName) {
     menuItems.filter(item => {
         if(item.name === itemName) {
-            cartItems.push(item)
             if (item.quantity === 0) {
                 item.quantity++
                 selectedItemsContainer.innerHTML += `
                     <div class="selected-items" id="${item.name}">
                         <div>
-                            <p class="selected-item-name">${item.name}</p>
+                            <p class="selected-item-name">${item.item_icon} ${item.name}</p>
                             <p class="item-quantity" id="${item.name}-quantity">${item.quantity}</p>
                             <button 
                                 class="remove-item-btn" 
@@ -48,7 +47,6 @@ function addItemToCart(itemName) {
             calculateTotal(item.price)
         } 
     })
-    applyOffer(cartItems)
 }
 
 // Calculate Total price
@@ -56,23 +54,6 @@ function calculateTotal(price) {
     totalValue.textContent = `${Number(totalValue.textContent) + price}`
     
     checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
-}
-
-// Apply Offer
-function applyOffer(items) {
-    const pizzaQty = items.filter(i => i.name === 'Pizza').length
-    const hamburgerQty = items.filter(i => i.name === 'Hamburger').length
-    if(pizzaQty === 2 && hamburgerQty === 2) {
-        selectedItemsContainer.innerHTML += `
-            <div class="selected-items" >
-                <div>
-                    <p class="selected-item-name">🎁 Free Beer!</p>
-                    <p class="item-quantity">1</p>
-                </div>
-                <p class="selected-item-price">-$12</p>
-            </div>
-        `
-    }
 }
 
 // Remove item from Cart
@@ -114,7 +95,13 @@ function getMenuItems() {
             return `
                 <div class="item">
                     <div class="item-detail-div">
-                        <img src="images/${image}" alt="${alt}" class="item-icon">
+                        <p 
+                            class="item-icon ${item.name}" 
+                            role="img" 
+                            aria-label="${item.aria_label}"
+                        >
+                            ${item.item_icon}
+                        </p>
                         <div>
                             <p class="item-name">${name}</p>
                             <p class="item-desc">${ingredients}</p>
