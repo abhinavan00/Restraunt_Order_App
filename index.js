@@ -28,12 +28,27 @@ function addItemToCart(itemName) {
         if(item.name === itemName) {
             cartItems.push(item)
             manageCartItems(item)
-
-            calculateTotal(item.price)
         } 
     })
-    // reduceTesting(cartItems)
+    calculateTotal(cartItems)
 
+}
+
+/* ===============
+    Remove item from Cart
+================== */
+function removeItemFromCart(itemId) {
+
+    menuItems.filter(item => {
+        if(item.name === itemId) {
+            const index = cartItems.indexOf(item)
+            if (index > -1) {
+                cartItems.splice(index, 1)
+            }
+            manageCartItems(item)
+        }
+    })
+    calculateTotal(cartItems)
 }
 
 /* ==============
@@ -41,7 +56,6 @@ function addItemToCart(itemName) {
 ================= */
 function manageCartItems(item) {
     const qty = cartItems.filter(cartItem => cartItem === item).length
-    console.log(qty)
 
     if(qty === 0) {
         document.getElementById(item.name).remove()
@@ -66,55 +80,20 @@ function manageCartItems(item) {
     }
 }
 
-// Testing reduce function
-function reduceTesting(cartItems) {
-
-    // const total = cartItems.reduce((total, current) => {
-    //     return total + current.price
-    // }, 0)
-
-    // const pizzaQty = cartItems.filter(item => item.name === 'Pizza').length
-    // const hamburgerQty = cartItems.filter(item => item.name === 'Hamburger').length
-    // const beerQty = cartItems.filter(item => item.name === 'Beer').length
-    // const mealQty = cartItems.filter(item => item.name === 'Meal').length
-
-    // console.log(total)
-    // console.log(pizzaQty)
-    // console.log(hamburgerQty)
-    // console.log(beerQty)
-    // console.log(mealQty)
-
-    // removeItem(cartItems);
-}
-
-
 /* ==============
     Calculate Total price
 ================= */
-function calculateTotal(price) {
-    totalValue.textContent = `${Number(totalValue.textContent) + price}`
-    
+function calculateTotal(cartItems) {
+
+    const total = cartItems.reduce((total, current) => {
+        return total + current.price
+    }, 0)
+
+    totalValue.textContent = total
+
     checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
+
 }
-
-/* ===============
-    Remove item from Cart
-================== */
-function removeItemFromCart(itemId) {
-
-    menuItems.filter(item => {
-        if(item.name === itemId) {
-            const index = cartItems.indexOf(item)
-            if (index > -1) {
-                cartItems.splice(index, 1)
-            }
-            manageCartItems(item)
-            calculateTotal(-item.price)
-        }
-    })
-    
-}
-
 
 /* ==============
     Order Confirmation Msg
