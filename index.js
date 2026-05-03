@@ -6,7 +6,9 @@ const totalValue = document.getElementById('total-value')
 const checkoutSection = document.getElementById('checkout-section')
 const paymentModal = document.getElementById('payment-modal')
 
-// event listners
+/* ============
+    Event listners
+=============== */
 document.addEventListener('click', function(e) {
     if(e.target.dataset.add) {
         addItemToCart(e.target.dataset.add)
@@ -18,17 +20,37 @@ document.addEventListener('click', function(e) {
     } 
 })
 
-// Add item to cart
+/* ============
+    Add item to cart
+=============== */
 function addItemToCart(itemName) {
     menuItems.filter(item => {
         if(item.name === itemName) {
-            if (item.quantity === 0) {
-                item.quantity++
-                selectedItemsContainer.innerHTML += `
+            cartItems.push(item)
+            manageCartItems(item)
+
+            calculateTotal(item.price)
+        } 
+    })
+    // reduceTesting(cartItems)
+
+}
+
+/* ==============
+    Manage cart items
+================= */
+function manageCartItems(item) {
+    const qty = cartItems.filter(cartItem => cartItem === item).length
+    console.log(qty)
+
+    if(qty === 0) {
+        document.getElementById(item.name).remove()
+    } else if(qty === 1 && !document.getElementById(item.name)) {
+        selectedItemsContainer.innerHTML += `
                     <div class="selected-items" id="${item.name}">
                         <div>
                             <p class="selected-item-name">${item.item_icon} ${item.name}</p>
-                            <p class="item-quantity" id="${item.name}-quantity">${item.quantity}</p>
+                            <p class="item-quantity" id="${item.name}-quantity">${qty}</p>
                             <button 
                                 class="remove-item-btn" 
                                 data-remove= "${item.name}"
@@ -39,40 +61,64 @@ function addItemToCart(itemName) {
                         <p class="selected-item-price">$${item.price}</p>
                     </div>
                 `
-            } else {
-                item.quantity++
-                document.getElementById(`${item.name}-quantity`).textContent = `${item.quantity}`
-            }
-
-            calculateTotal(item.price)
-        } 
-    })
+    } else {
+        document.getElementById(`${item.name}-quantity`).textContent = `${qty}`
+    }
 }
 
-// Calculate Total price
+// Testing reduce function
+function reduceTesting(cartItems) {
+
+    // const total = cartItems.reduce((total, current) => {
+    //     return total + current.price
+    // }, 0)
+
+    // const pizzaQty = cartItems.filter(item => item.name === 'Pizza').length
+    // const hamburgerQty = cartItems.filter(item => item.name === 'Hamburger').length
+    // const beerQty = cartItems.filter(item => item.name === 'Beer').length
+    // const mealQty = cartItems.filter(item => item.name === 'Meal').length
+
+    // console.log(total)
+    // console.log(pizzaQty)
+    // console.log(hamburgerQty)
+    // console.log(beerQty)
+    // console.log(mealQty)
+
+    // removeItem(cartItems);
+}
+
+
+/* ==============
+    Calculate Total price
+================= */
 function calculateTotal(price) {
     totalValue.textContent = `${Number(totalValue.textContent) + price}`
     
     checkoutSection.style.display = Number(totalValue.textContent) > 0 ? 'block' : 'none'
 }
 
-// Remove item from Cart
+/* ===============
+    Remove item from Cart
+================== */
 function removeItemFromCart(itemId) {
+
     menuItems.filter(item => {
-        if (item.name === itemId && item.quantity > 1) {
-            item.quantity--
-            document.getElementById(`${item.name}-quantity`).textContent = `${item.quantity}`
+        if(item.name === itemId) {
+            const index = cartItems.indexOf(item)
+            if (index > -1) {
+                cartItems.splice(index, 1)
+            }
+            manageCartItems(item)
             calculateTotal(-item.price)
-        } else if(item.name === itemId && item.quantity === 1) {
-            item.quantity--
-            calculateTotal(-item.price)
-            document.getElementById(itemId).remove()
         }
     })
+    
 }
 
 
-// Order Confirmation Msg
+/* ==============
+    Order Confirmation Msg
+================= */
 paymentModal.addEventListener('submit', function(e) {
     e.preventDefault()
     const formData = new FormData(paymentModal)
@@ -86,7 +132,9 @@ paymentModal.addEventListener('submit', function(e) {
     `
 })
 
-// Get list of menu items
+/* =================
+    Get list of menu items
+==================== */
 function getMenuItems() {
     
     return menuItems.map(item => {
@@ -115,7 +163,9 @@ function getMenuItems() {
 
 }
 
-// render menu items to DOM
+/* ==============
+    render menu items to DOM
+================= */
 function render() {
     itemsContainer.innerHTML = getMenuItems()
 }

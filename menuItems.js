@@ -25,7 +25,7 @@ export const menuItems = [
     },
     {
         name: 'Meal',
-        ingredients: '1 Pizza, 1 Hamburger, 1Beer',
+        ingredients: '1 Pizza, 1 Hamburger, 1 Beer',
         price: 33,
         quantity: 0,
         item_icon: '&#127829&#127828&#127866',
