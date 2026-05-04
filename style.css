@@ -1,18 +1,25 @@
 body {
     font-family: "Smythe", system-ui;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     padding: 0;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
 }
 
-/* HEADER */
+/* =============
+    HEADER
+================ */
 header {
     background-image: url('./images/header-bg.png');
+    background-position: center;
+    width: 100%;
+    max-width: 600px;
     height: 170px;
     color: white;
     padding-left: 48px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,18 +31,21 @@ h1, h3 {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 500;
 }
 
 h3 {
-    font-size: 23px;
+    font-size: 1.25rem;
     font-weight: 100;
 }
 
-/* MENU OPTIONS SECTION */
+/* =====================
+    MENU OPTIONS SECTION
+======================== */
 .item {
-    width: 500px;
+    width: 85%;
+    max-width: 500px;
     margin: 20px auto;
     padding-bottom: 30px;
     border-bottom: 1px solid #D2D2D2;
@@ -90,11 +100,14 @@ h3 {
     cursor: pointer;
 }
 
-/* CHECKOUT SECTION */
+/* =================
+    CHECKOUT SECTION
+==================== */
 
 .checkout-section {
     display: none;
-    width: 500px;
+    width: 85%;
+    max-width: 500px;
     margin: 40px auto;
     text-align: center;
 }
@@ -156,7 +169,8 @@ h3 {
 } 
 
 .checkout-btn {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     border: none;
     border-radius: 4px;
     background-color: #16DB99;
@@ -170,11 +184,13 @@ h3 {
 
 /* PAYMENT MODAL */
 .payment-modal {
-    width: 525px;
+    width: 90%;
+    max-width: 525px;
     height: 500px;
+    text-align: center;
     display: none;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-around;
     position: fixed;
     inset: 0;
@@ -192,11 +208,12 @@ h3 {
 
 input {
     display: block;
-    width: 475px;
+    width: 90%;
+    max-width: 475px;
     font-size: 20px;
     padding: 20px 10px;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     border: 1px solid black;
     border-radius: 4px;
 }
@@ -207,8 +224,10 @@ input::-webkit-inner-spin-button {
 }
 
 .payment-btn {
-    width: 475px;
+    width: 90%;
+    max-width: 475px;
     padding: 20px 0;
+    margin: 0 auto;
     font-size: 20px;
     font-weight: bold;
     color: white;
