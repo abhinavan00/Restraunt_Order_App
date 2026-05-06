@@ -17,7 +17,9 @@ document.addEventListener('click', function(e) {
     } else if (e.target.id === 'checkout-btn') {
         // Payment Modal
         paymentModal.style.display = 'flex'
-    } 
+    } else if (e.target.dataset.star) {
+        rateExperience(e.target.dataset.star)
+    }
 })
 
 /* ============
@@ -105,11 +107,44 @@ paymentModal.addEventListener('submit', function(e) {
     paymentModal.style.display = 'none'
 
     checkoutSection.innerHTML = `
-        <p class="confrm-msg" id="confrm-msg">
-            Thanks, ${customerName}! Your order is on its way!
-        </p>
+        <div class="confrm-msg-container">
+            <p class="confrm-msg">
+                Thanks, ${customerName}! Your order is on its way!
+            </p>
+            <div>
+                <p>How was your ordering experience with Us, today?</p>
+                <span>
+                    <i class="fa-regular fa-star star" data-star="star" ></i>
+                    <i class="fa-regular fa-star star" data-star="star" ></i>
+                    <i class="fa-regular fa-star star" data-star="star" ></i>
+                    <i class="fa-regular fa-star star" data-star="star" ></i>
+                    <i class="fa-regular fa-star star" data-star="star" ></i>
+                </span>
+            </div>
+        </div>
     `
 })
+
+/* ==================
+    RATE EXPERIENCE
+===================== */
+function rateExperience(starClassName) {
+    const stars = document.querySelectorAll(`.${starClassName}`)
+
+    stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+            const rating = index + 1
+
+            stars.forEach((s, i) => {
+                if(i < rating) {
+                    s.classList.add('fa-solid')
+                } else {
+                    s.classList.remove('fa-solid')
+                }
+            })
+        })
+    })
+}
 
 /* =================
     Get list of menu items

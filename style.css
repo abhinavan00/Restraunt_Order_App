@@ -182,7 +182,9 @@ h3 {
     cursor: pointer;
 }
 
-/* PAYMENT MODAL */
+/* ====================
+    PAYMENT MODAL
+======================= */
 .payment-modal {
     width: 90%;
     max-width: 525px;
@@ -190,7 +192,6 @@ h3 {
     text-align: center;
     display: none;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: space-around;
     position: fixed;
     inset: 0;
@@ -237,13 +238,17 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-/* CONFIRMATION MESSAGE */
-.confrm-msg {
-    font-size: 32px;
-    color: #065F46;
+/* ======================
+    CONFIRMATION MESSAGE
+========================= */
+.confrm-msg-container {
     background: #ECFDF5;
-    padding: 30px 0;
+    padding: 1em;
     border-radius: 6px;
-    /* box-shadow: 3px 3px 50px 0 rgba(0, 0, 0, 0.5); */
+}
+
+.confrm-msg {
+    font-size: 2rem;
+    color: #065F46;
 }
 
