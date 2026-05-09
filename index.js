@@ -1,10 +1,15 @@
-import { menuItems, cartItems} from "./menuItems.js"
+import { menuItems } from "./menuItems.js"
 
 const itemsContainer = document.getElementById('items-container')
 const selectedItemsContainer = document.getElementById('selected-items-container')
 const totalValue = document.getElementById('total-value')
 const checkoutSection = document.getElementById('checkout-section')
 const paymentModal = document.getElementById('payment-modal')
+
+/* =================
+    CART ARRAY
+==================== */
+const cartItems = []
 
 /* ============
     Event listners

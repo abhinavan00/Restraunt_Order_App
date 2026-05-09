@@ -33,5 +33,3 @@ export const menuItems = [
     }
 
 ]
-
-export const cartItems = []
