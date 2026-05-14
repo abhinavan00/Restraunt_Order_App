@@ -135,7 +135,7 @@ paymentModal.addEventListener('submit', function(e) {
 ===================== */
 function rateExperience(starClassName) {
     const stars = document.querySelectorAll(`.${starClassName}`)
-
+    
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
             const rating = index + 1
